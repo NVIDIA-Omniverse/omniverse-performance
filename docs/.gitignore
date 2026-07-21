@@ -1,0 +1,10 @@
+# Sphinx build output
+_build/
+
+# Python cache
+cache/
+*.pyc
+__pycache__/
+
+# Virtual environment (also covered by root .gitignore)
+.venv/

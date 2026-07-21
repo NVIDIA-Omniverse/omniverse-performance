@@ -1,0 +1,24 @@
+[project]
+name = "performance-self-serve-docs"
+version = "1.0.0"
+description = "Documentation for the Omniverse Performance guide"
+requires-python = ">=3.10"
+
+# Single source of truth for the docs build dependencies. These are minimum
+# floors kept compatible with requires-python (>=3.10); the exact, reproducible
+# versions are pinned in uv.lock (committed). `uv sync --group docs` installs
+# from the lock — CI does the same.
+[dependency-groups]
+docs = [
+    "sphinx>=7.0",
+    "myst-parser>=3.0",
+    "sphinx-copybutton>=0.5",
+    "sphinx-design>=0.5",
+    "sphinxcontrib-mermaid>=0.9",
+    "sphinx-autobuild>=2024.0",
+    "nvidia-sphinx-theme>=0.0.9",
+    "pyyaml>=6.0",
+]
+
+[tool.uv]
+cache-dir = "cache/uv"

@@ -1,0 +1,31 @@
+/* SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Project-specific styling on top of nvidia-sphinx-theme.
+ */
+
+/* Slightly tighter table cells for the dense settings/configuration tables. */
+table.docutils td,
+table.docutils th {
+    padding: 0.4rem 0.7rem;
+    vertical-align: top;
+}
+
+/* Long inline-code settings paths (e.g. /app/usdrt/population/utils/...) are
+ * single unbreakable tokens; they force their column wide and squeeze the rest
+ * of the table. Allow breaks inside code within table cells only —
+ * overflow-wrap: anywhere also lets the column's min-content width shrink,
+ * which is what actually lets the table narrow the column. */
+table td code,
+table td code span.pre {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* Make Do/Don't/Experimental/Deprecated callouts visually distinct in admonitions. */
+.admonition.do,
+.admonition.dont,
+.admonition.experimental,
+.admonition.deprecated {
+    border-left-width: 4px;
+}

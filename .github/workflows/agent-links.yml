@@ -1,0 +1,46 @@
+name: Check Agent-Facing Links
+
+# Sphinx linkcheck (linkcheck.yml) only covers docs/. This checks the links in
+# the agent-facing files (AGENTS.md, README.md, AUTHORING.md, skills/, .cursor/)
+# that Sphinx does not build. Standard library only; non-blocking.
+
+on:
+  schedule:
+    # 06:00 UTC every Monday and Thursday (same cadence as the docs linkcheck).
+    - cron: "0 6 * * 1,4"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "README.md"
+      - "AUTHORING.md"
+      - "skills/**"
+      - ".cursor/**"
+      - "scripts/check-agent-links.py"
+
+permissions:
+  contents: read
+
+jobs:
+  agent-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check agent-facing links
+        # Non-blocking: report dead links but don't fail the PR (flaky hosts
+        # shouldn't block a merge). The report artifact has the real list.
+        run: python scripts/check-agent-links.py || true
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-links-report
+          path: linkcheck-agent-files.txt
+          retention-days: 30

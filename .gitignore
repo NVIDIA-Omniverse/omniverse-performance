@@ -1,0 +1,37 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code local settings (personal, per-machine)
+.claude/settings.local.json
+
+# Cursor: ignore the cache/state dir but commit shared project rules.
+.cursor/*
+!.cursor/rules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+tmp/
+
+# Link-check report artifact (scripts/check-agent-links.py / CI)
+linkcheck-agent-files.txt

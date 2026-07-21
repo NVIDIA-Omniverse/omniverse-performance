@@ -1,0 +1,45 @@
+---
+description: Omniverse Performance repo — agent routing for Omniverse/Kit/USD performance questions
+alwaysApply: true
+---
+
+# Omniverse Performance
+
+This repo is a high-level performance guide for **Omniverse Kit** and **OpenUSD**. When asked any performance-related question (loading time, FPS, memory, GPU crash, FSD/UJITSO, USDRT, Scene Optimizer, etc.), follow the routing in [AGENTS.md](mdc:AGENTS.md).
+
+## How to use this repo
+
+[AGENTS.md](mdc:AGENTS.md) at the repo root is the single source of truth for which skill to apply when. It maps user questions to one of the 12 self-contained skills under `skills/<name>/SKILL.md`. Read AGENTS.md first; it has the routing table.
+
+Each skill is self-contained and current as of the latest revision in `docs/`. Prefer the synthesized Do's, Don'ts, and decision tables in the skill before reading the longer prose chapters in `docs/`.
+
+## Skill index
+
+For a quick reference, the skills are:
+
+- [skills/perf-triage/SKILL.md](mdc:skills/perf-triage/SKILL.md) — entry point for any "my scene is slow" question
+- [skills/profiling-guide/SKILL.md](mdc:skills/profiling-guide/SKILL.md) — F8, Tracy, activity timeline
+- [skills/usd-scene-structure/SKILL.md](mdc:skills/usd-scene-structure/SKILL.md) — payloads, layers, instancing
+- [skills/usdrt-advisor/SKILL.md](mdc:skills/usdrt-advisor/SKILL.md) — USDRT migration with runnable code
+- [skills/scene-optimizer-guide/SKILL.md](mdc:skills/scene-optimizer-guide/SKILL.md) — bottleneck-driven Scene Optimizer
+- [skills/rendering-tuner/SKILL.md](mdc:skills/rendering-tuner/SKILL.md) — RTX, DLSS, glass, multi-GPU
+- [skills/fsd-configurator/SKILL.md](mdc:skills/fsd-configurator/SKILL.md) — FSD settings, mergeMaterials default (off by default since Kit 108)
+- [skills/ujitso-manager/SKILL.md](mdc:skills/ujitso-manager/SKILL.md) — UJITSO derived-data cache
+- [skills/memory-optimizer/SKILL.md](mdc:skills/memory-optimizer/SKILL.md) — GPU/system memory, texture sizing
+- [skills/content-prep-advisor/SKILL.md](mdc:skills/content-prep-advisor/SKILL.md) — CAD import, validation, materials, physics
+- [skills/cloud-perf-advisor/SKILL.md](mdc:skills/cloud-perf-advisor/SKILL.md) — caching architecture, pre-warming
+- [skills/troubleshooting-router/SKILL.md](mdc:skills/troubleshooting-router/SKILL.md) — common scenarios with step-by-step routing
+
+## Working principles
+
+The working principles (reproduce-on-latest-Kit first, defaults-first, no invented numbers, no customer attribution, doc links inline, mark experimental/deprecated) are maintained once in [AGENTS.md](mdc:AGENTS.md) — read them there so they can't drift between files. Editing or building the guide itself? See [AUTHORING.md](mdc:AUTHORING.md) for the Sphinx conventions, build, and git workflow.
+
+## Behavior expectations
+
+- Quote specific setting paths verbatim (e.g. `/app/usdrt/population/utils/mergeMaterials`, never just `mergeMaterials`).
+- Flag when guidance depends on Kit version. Most defaults assume Kit 109 / 110.
+- Don't fabricate code samples — the runnable examples in `skills/usdrt-advisor/SKILL.md` and `docs/reference/usd-in-kit.md` are intentionally complete (with imports). Copy from those rather than inventing variants.
+
+## When the question doesn't match any skill
+
+If the user's question doesn't fit one of the skills in AGENTS.md, answer directly using the canonical chapter in `docs/` rather than guessing. The chapter mapping is documented in [AGENTS.md](mdc:AGENTS.md) under "Document layout".
